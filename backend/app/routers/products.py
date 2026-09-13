@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from ..deps import get_db, require_admin
 from ..schemas import Product, ProductCreate, ProductListResponse
-from ..services.products import get_product, list_products
+from ..services.products import get_product, list_products, sync_product_images
 
 router = APIRouter(prefix="/api", tags=["products"])
 
@@ -46,25 +46,32 @@ def create_product(
     session: Session = Depends(get_db),
     _admin=Depends(require_admin),
 ):
-    values = {
-        "category_id": payload.category_id,
-        "name": payload.name,
-        "brand": payload.brand,
-        "description": payload.description,
-        "abv": payload.alcohol_percentage,
-        "volume": payload.volume_ml,
-        "price": payload.price,
-        "image": payload.image_url,
-    }
+    primary = payload.image_url or (payload.images[0] if payload.images else None)
     row = session.execute(
         text(
             """insert into products
-            (category_id,name,brand,description,alcohol_percentage,volume_ml,price,image_url)
-            values (:category_id,:name,:brand,:description,:abv,:volume,:price,:image)
+            (category_id,name,brand,description,alcohol_percentage,volume_ml,price,mrp,
+             image_url,country_of_origin,highlights,sku)
+            values (:category_id,:name,:brand,:description,:alcohol_percentage,:volume_ml,
+             :price,:mrp,:image_url,:country_of_origin,:highlights,:sku)
             returning id"""
         ),
-        values,
+        {
+            "category_id": payload.category_id,
+            "name": payload.name,
+            "brand": payload.brand,
+            "description": payload.description,
+            "alcohol_percentage": payload.alcohol_percentage,
+            "volume_ml": payload.volume_ml,
+            "price": payload.price,
+            "mrp": payload.mrp or payload.price,
+            "image_url": primary,
+            "country_of_origin": payload.country_of_origin,
+            "highlights": payload.highlights or [],
+            "sku": payload.sku,
+        },
     ).scalar_one()
+    pid = str(row)
     session.execute(
         text(
             "insert into inventory (product_id,stock_quantity,reorder_level) "
@@ -72,8 +79,9 @@ def create_product(
         ),
         {"id": row, "stock": payload.stock_quantity, "level": payload.reorder_level},
     )
+    sync_product_images(session, pid, payload.images, primary)
     session.commit()
-    return get_product(session, str(row), active_only=False)
+    return get_product(session, pid, active_only=False)
 
 
 @router.put("/products/{product_id}", response_model=Product)
@@ -83,16 +91,30 @@ def edit_product(
     session: Session = Depends(get_db),
     _admin=Depends(require_admin),
 ):
-    data = payload.model_dump()
-    data["id"] = product_id
+    primary = payload.image_url or (payload.images[0] if payload.images else None)
     result = session.execute(
         text(
             """update products set category_id=:category_id,name=:name,brand=:brand,
             description=:description,alcohol_percentage=:alcohol_percentage,
-            volume_ml=:volume_ml,price=:price,image_url=:image_url,updated_at=now()
-            where id=:id"""
+            volume_ml=:volume_ml,price=:price,mrp=:mrp,image_url=:image_url,
+            country_of_origin=:country_of_origin,highlights=:highlights,sku=:sku,
+            updated_at=now() where id=:id"""
         ),
-        data,
+        {
+            "id": product_id,
+            "category_id": payload.category_id,
+            "name": payload.name,
+            "brand": payload.brand,
+            "description": payload.description,
+            "alcohol_percentage": payload.alcohol_percentage,
+            "volume_ml": payload.volume_ml,
+            "price": payload.price,
+            "mrp": payload.mrp or payload.price,
+            "image_url": primary,
+            "country_of_origin": payload.country_of_origin,
+            "highlights": payload.highlights or [],
+            "sku": payload.sku,
+        },
     )
     if result.rowcount == 0:
         raise HTTPException(404, "Product not found")
@@ -107,6 +129,7 @@ def edit_product(
             "id": product_id,
         },
     )
+    sync_product_images(session, product_id, payload.images, primary)
     session.commit()
     return get_product(session, product_id, active_only=False)
 

@@ -13,7 +13,12 @@ class Product(BaseModel):
     category_slug: str | None = None
     description: str = ""
     image_url: str | None = None
+    images: list[str] = []
     price: Decimal
+    mrp: Decimal | None = None
+    country_of_origin: str | None = None
+    highlights: list[str] = []
+    sku: str | None = None
     alcohol_percentage: Decimal
     volume_ml: int
     stock_quantity: int
@@ -53,7 +58,12 @@ class ProductCreate(BaseModel):
     alcohol_percentage: Decimal
     volume_ml: int = Field(gt=0)
     price: Decimal = Field(ge=0)
+    mrp: Decimal | None = None
     image_url: str | None = None
+    images: list[str] = []
+    country_of_origin: str | None = None
+    highlights: list[str] = []
+    sku: str | None = None
     stock_quantity: int = Field(default=0, ge=0)
     reorder_level: int = Field(default=10, ge=0)
 
@@ -68,6 +78,11 @@ class RegisterRequest(BaseModel):
 class LoginRequest(BaseModel):
     email: str
     password: str
+
+
+class ProfileUpdate(BaseModel):
+    date_of_birth: date
+    full_name: str | None = None
 
 
 class CartItemCreate(BaseModel):

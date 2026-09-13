@@ -14,9 +14,11 @@ def _get_cart(session: Session, user_id: str):
     rows = session.execute(
         text(
             """select ci.id::text,ci.product_id::text,ci.quantity,p.name,p.price,p.image_url,
+            coalesce(i.stock_quantity, 0) as stock_quantity,
             (ci.quantity*p.price) as line_total
             from carts c join cart_items ci on ci.cart_id=c.id
             join products p on p.id=ci.product_id
+            left join inventory i on i.product_id=p.id
             where c.user_id=:user"""
         ),
         {"user": user_id},

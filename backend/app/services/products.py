@@ -6,7 +6,9 @@ from ..schemas import Product
 
 PRODUCT_SELECT = """
   select p.id::text, p.name, p.brand, c.name as category, c.slug as category_slug,
-         p.description, p.image_url, p.price, p.alcohol_percentage, p.volume_ml, p.is_active,
+         p.description, p.image_url, p.price, p.mrp, p.country_of_origin,
+         coalesce(p.highlights, '{}') as highlights, p.sku,
+         p.alcohol_percentage, p.volume_ml, p.is_active,
          coalesce(i.stock_quantity, 0) as stock_quantity,
          coalesce(i.reorder_level, 10) as reorder_level
   from products p
@@ -23,8 +25,26 @@ def inventory_status(stock: int, reorder: int) -> str:
     return "in_stock"
 
 
-def product_from_row(row) -> Product:
-    return Product(**dict(row))
+def _load_images(session: Session, product_id: str) -> list[str]:
+    rows = session.execute(
+        text(
+            "select url from product_images where product_id=:id "
+            "order by is_primary desc, sort_order asc"
+        ),
+        {"id": product_id},
+    ).scalars().all()
+    return list(rows)
+
+
+def product_from_row(row, images: list[str] | None = None) -> Product:
+    data = dict(row)
+    if images is not None:
+        data["images"] = images
+    else:
+        data["images"] = [data["image_url"]] if data.get("image_url") else []
+    highlights = data.get("highlights") or []
+    data["highlights"] = list(highlights) if highlights else []
+    return Product(**data)
 
 
 def product_query_base(active_only: bool = True) -> str:
@@ -34,12 +54,40 @@ def product_query_base(active_only: bool = True) -> str:
     return query
 
 
+def sync_product_images(session: Session, product_id: str, images: list[str], primary: str | None):
+    session.execute(
+        text("delete from product_images where product_id=:id"),
+        {"id": product_id},
+    )
+    urls = [u for u in images if u]
+    if primary and primary not in urls:
+        urls.insert(0, primary)
+    if not urls and primary:
+        urls = [primary]
+    for i, url in enumerate(urls):
+        session.execute(
+            text(
+                "insert into product_images (product_id, url, sort_order, is_primary) "
+                "values (:pid, :url, :ord, :primary)"
+            ),
+            {"pid": product_id, "url": url, "ord": i, "primary": i == 0},
+        )
+    if urls:
+        session.execute(
+            text("update products set image_url=:url where id=:id"),
+            {"url": urls[0], "id": product_id},
+        )
+
+
 def get_product(session: Session, product_id: str, active_only: bool = True) -> Product:
     query = product_query_base(active_only) + " and p.id = :id"
     row = session.execute(text(query), {"id": product_id}).mappings().first()
     if not row:
         raise HTTPException(404, "Product not found")
-    return product_from_row(row)
+    images = _load_images(session, product_id)
+    if not images and row.get("image_url"):
+        images = [row["image_url"]]
+    return product_from_row(row, images)
 
 
 def list_products(
