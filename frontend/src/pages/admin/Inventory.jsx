@@ -106,7 +106,7 @@ export default function Inventory() {
           <button
             key={s || 'all'}
             onClick={() => setFilter('status', s)}
-            className={`px-3 py-1.5 rounded-full text-sm ${status === s ? 'bg-slate-900 text-white' : 'bg-white border border-slate-200'}`}
+            className={`px-3 py-1.5 rounded-full text-sm ${status === s ? 'bg-slate-900 text-white' : 'bg-white border border-slate-200 text-slate-900'}`}
           >
             {s ? s.replace('_', ' ') : 'All'}
           </button>
@@ -162,9 +162,9 @@ export default function Inventory() {
                 </td>
                 <td className="p-3">
                   <div className="flex items-center gap-1">
-                    <button onClick={() => adjust(r.id, -1, 'correction')} className="p-1 border rounded"><Minus size={12} /></button>
+                    <button onClick={() => adjust(r.id, -1, 'correction')} className="p-1 border rounded text-slate-900"><Minus size={12} /></button>
                     <InlineEdit value={r.stock_quantity} onSave={(v) => patchStock(r.id, v, r.reorder_level)} />
-                    <button onClick={() => adjust(r.id, 1, 'restock')} className="p-1 border rounded"><Plus size={12} /></button>
+                    <button onClick={() => adjust(r.id, 1, 'restock')} className="p-1 border rounded text-slate-900"><Plus size={12} /></button>
                   </div>
                 </td>
                 <td className="p-3">
@@ -215,7 +215,7 @@ function InlineEdit({ value, onSave }) {
   const [v, setV] = useState(value);
   if (!editing) {
     return (
-      <button onClick={() => { setV(value); setEditing(true); }} className="font-medium min-w-[2rem] text-center hover:bg-slate-100 rounded px-1">
+      <button onClick={() => { setV(value); setEditing(true); }} className="font-medium min-w-[2rem] text-center text-slate-900 hover:bg-slate-100 rounded px-1">
         {value}
       </button>
     );
