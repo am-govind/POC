@@ -1,68 +1,60 @@
 # BottleShop
 
-Premium animated liquor e-commerce — FastAPI backend, React + Three.js storefront, and admin dashboard.
+Flipkart-style online liquor store — FastAPI backend, React storefront, Supabase PostgreSQL.
 
 ## Stack
 
-- **Backend:** FastAPI, SQLAlchemy, JWT auth, Supabase PostgreSQL
-- **Frontend:** React 19, Vite, Tailwind CSS, Three.js (R3F), Framer Motion
-- **Database:** Supabase local Postgres (Docker)
+- **Backend:** FastAPI, JWT auth, modular routers
+- **Frontend:** React 19, Vite, Tailwind CSS (Flipkart blue/white UI)
+- **Database:** Supabase local Postgres
 
 ## Run locally
 
 ```bash
-# 1. Start Supabase (Docker + Supabase CLI)
 supabase start
-supabase db reset   # applies migrations + seed
+supabase db reset    # migrations + base seed (users, categories)
 
-# 2. API
-cd backend
-python3 -m venv .venv && source .venv/bin/activate
+# Load full product catalog (~48 SKUs with images)
+export DATABASE_URL='postgresql://postgres:postgres@127.0.0.1:54322/postgres'
+pip install psycopg
+python scripts/seed_catalog.py
+
+# API
+cd backend && python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 
-# 3. Frontend (new terminal)
-cd frontend
-npm install
-npm run dev
+# Frontend
+cd frontend && npm install && npm run dev
 ```
 
-- API docs: http://localhost:8000/docs  
 - Storefront: http://localhost:5173  
 - Admin: http://localhost:5173/admin  
+- API docs: http://localhost:8000/docs  
 
 ## Demo accounts
 
-| Role     | Email                      | Password     |
-|----------|----------------------------|--------------|
-| Admin    | admin@bottleshop.local     | admin123     |
-| Customer | customer@bottleshop.local  | customer123  |
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@bottleshop.local | admin123 |
+| Customer | customer@bottleshop.local | customer123 |
 
-## Configuration
+## Catalog data
 
-Copy `backend/.env.example` → `backend/.env` and `frontend/.env.example` → `frontend/.env`.
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `DATABASE_URL` | local Supabase | Postgres connection |
-| `JWT_SECRET` | dev secret | Change in production |
-| `FRONTEND_URL` | http://localhost:5173 | CORS origin |
-| `VITE_API_URL` | http://localhost:8000 | API base URL |
-| `MIN_AGE_YEARS` | 21 | Minimum age for checkout |
+- Edit [`supabase/seed/catalog.json`](supabase/seed/catalog.json) — 48 products across 8 categories with images, MRP, highlights
+- Re-run `python scripts/seed_catalog.py` after changes
+- Admin can also add/edit products at `/admin/products`
 
 ## Features
 
-**Storefront:** Three.js hero, 3D product viewer, category browse, cart, checkout, order history, age gate on checkout.
+- Flipkart-style browse, search, filters, discount badges, image galleries
+- Cart → checkout with age verification (DOB) and back navigation
+- Admin: products, inventory with audit log, orders
 
-**Admin:** Dashboard with low-stock alerts, product CRUD, inventory management with audit log, order status updates.
+## Configuration
 
-## Checks
-
-```bash
-python3 -m py_compile backend/app/main.py backend/app/routers/*.py
-cd frontend && npm ci && npm run build
-```
-
-## Warehouse CSV import
-
-See `scripts/import_warehouse_sales.py` for bulk historical data import (optional).
+| Variable | Default |
+|----------|---------|
+| `JWT_SECRET` | dev secret |
+| `MIN_AGE_YEARS` | 21 |
+| `VITE_API_URL` | http://localhost:8000 |
