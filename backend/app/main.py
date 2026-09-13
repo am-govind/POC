@@ -2,6 +2,9 @@ from decimal import Decimal
 from typing import Generator
 from datetime import date
 import os
+import time
+import bcrypt
+import jwt
 
 from fastapi import Depends, FastAPI, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,11 +26,21 @@ SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 app = FastAPI(title="BottleShop API", version="0.1.0")
 app.add_middleware(CORSMiddleware, allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:5173")], allow_methods=["*"], allow_headers=["*"])
 
-ADMIN_API_KEY = os.getenv("ADMIN_API_KEY")
+JWT_SECRET = os.getenv("JWT_SECRET", "local-development-secret-change-me")
 
-def require_admin(x_admin_key: str | None = Header(default=None)):
-    if not ADMIN_API_KEY or x_admin_key != ADMIN_API_KEY:
-        raise HTTPException(403, "Admin API key required")
+def token_payload(authorization: str | None = Header(default=None)):
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(401, "Bearer token required")
+    try:
+        return jwt.decode(authorization[7:], JWT_SECRET, algorithms=["HS256"])
+    except jwt.PyJWTError:
+        raise HTTPException(401, "Invalid or expired token")
+
+def require_admin(authorization: str | None = Header(default=None)):
+    payload = token_payload(authorization)
+    if payload.get("role") != "admin":
+        raise HTTPException(403, "Admin role required")
+    return payload
 
 def db() -> Generator[Session, None, None]:
     session = SessionLocal()
@@ -68,6 +81,13 @@ class UserCreate(BaseModel):
     full_name: str = ''
     date_of_birth: date | None = None
 
+class RegisterRequest(UserCreate):
+    password: str = Field(min_length=8)
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
 class CartItemCreate(BaseModel):
     product_id: str
     quantity: int = 1
@@ -94,6 +114,33 @@ def product_by_id(session, product_id):
 
 @app.get("/health")
 def health(): return {"status": "ok", "service": "bottleshop-api"}
+
+def issue_token(row):
+    return jwt.encode({"sub": str(row["id"]), "email": row["email"], "role": row["role"], "exp": int(time.time()) + 86400}, JWT_SECRET, algorithm="HS256")
+
+@app.post("/api/auth/register", status_code=201)
+def register(payload: RegisterRequest, session: Session = Depends(db)):
+    exists = session.execute(text("select id from profiles where lower(email)=lower(:email)"), {"email": payload.email}).first()
+    if exists: raise HTTPException(409, "Email already registered")
+    row = session.execute(text("""insert into profiles(email,full_name,date_of_birth,password_hash)
+      values (:email,:full_name,:date_of_birth,:password_hash)
+      returning id::text,email,full_name,role"""), {**payload.model_dump(exclude={"password"}), "password_hash": bcrypt.hashpw(payload.password.encode(), bcrypt.gensalt()).decode()}).mappings().one()
+    session.commit()
+    return {"access_token": issue_token(row), "token_type": "bearer", "user": dict(row)}
+
+@app.post("/api/auth/login")
+def login(payload: LoginRequest, session: Session = Depends(db)):
+    row = session.execute(text("select id::text,email,full_name,role,password_hash from profiles where lower(email)=lower(:email)"), {"email": payload.email}).mappings().first()
+    if not row or not row["password_hash"] or not bcrypt.checkpw(payload.password.encode(), row["password_hash"].encode()):
+        raise HTTPException(401, "Invalid email or password")
+    public = {k: row[k] for k in ("id", "email", "full_name", "role")}
+    return {"access_token": issue_token(public), "token_type": "bearer", "user": public}
+
+@app.get("/api/auth/me")
+def me(payload=Depends(token_payload), session: Session = Depends(db)):
+    row = session.execute(text("select id::text,email,full_name,role from profiles where id=:id"), {"id": payload["sub"]}).mappings().first()
+    if not row: raise HTTPException(404, "User not found")
+    return dict(row)
 
 @app.get("/api/products", response_model=list[Product])
 def products(search: str | None = None, category: str | None = None, low_stock: bool = False, session: Session = Depends(db)):
