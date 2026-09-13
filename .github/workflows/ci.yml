@@ -11,7 +11,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r backend/requirements.txt
-      - run: python -m py_compile backend/app/main.py scripts/import_warehouse_sales.py
+      - run: python -m py_compile backend/app/main.py backend/app/deps.py backend/app/schemas.py backend/app/routers/*.py backend/app/services/products.py scripts/import_warehouse_sales.py
       - uses: actions/setup-node@v4
         with:
           node-version: 22
