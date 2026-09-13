@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import StoreNav from '../../components/layout/StoreNav';
 import StoreFooter from '../../components/layout/StoreFooter';
 import ProductCard from '../../components/store/ProductCard';
@@ -16,9 +16,11 @@ export default function Shop() {
   const sort = params.get('sort') || 'name';
   const { isAuthenticated } = useAuth();
   const { addItem } = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const search = new URLSearchParams({ page, limit: '12', sort });
+    const search = new URLSearchParams({ page, limit: '24', sort });
     if (q) search.set('search', q);
     if (category) search.set('category', category);
     api(`/api/products?${search}`).then(setData).catch(() => {});
@@ -33,38 +35,43 @@ export default function Shop() {
   };
 
   const handleAdd = async (product) => {
-    if (!isAuthenticated) { window.location.href = '/login'; return; }
+    if (!isAuthenticated) {
+      navigate(`/login?redirect=${encodeURIComponent(location.pathname + location.search)}`);
+      return;
+    }
     await addItem(product.id);
   };
 
   return (
-    <div className="min-h-screen bg-ink bg-grain">
+    <div className="min-h-screen bg-flipkart-bg">
       <StoreNav />
-      <main className="max-w-7xl mx-auto px-4 py-10">
-        <h1 className="font-display text-4xl mb-6">Shop</h1>
-        <div className="flex flex-wrap gap-3 mb-8">
-          <select className="input-field w-auto" value={sort} onChange={(e) => setFilter('sort', e.target.value)}>
-            <option value="name">Name</option>
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        <h1 className="text-xl font-semibold text-flipkart-text mb-4">
+          {q ? `Results for "${q}"` : category ? category.charAt(0).toUpperCase() + category.slice(1) : 'All Products'}
+        </h1>
+        <div className="flex flex-wrap gap-3 mb-6">
+          <select className="fk-input w-auto text-sm" value={sort} onChange={(e) => setFilter('sort', e.target.value)}>
+            <option value="name">Sort: Name</option>
             <option value="price_asc">Price: Low to High</option>
             <option value="price_desc">Price: High to Low</option>
           </select>
-          <select className="input-field w-auto" value={category} onChange={(e) => setFilter('category', e.target.value)}>
+          <select className="fk-input w-auto text-sm" value={category} onChange={(e) => setFilter('category', e.target.value)}>
             <option value="">All categories</option>
             {['whisky','wine','beer','gin','vodka','rum','tequila','liqueurs'].map((c) => (
               <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
             ))}
           </select>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {data.items.map((p, i) => <ProductCard key={p.id} product={p} index={i} onAdd={handleAdd} />)}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {data.items.map((p) => <ProductCard key={p.id} product={p} onAdd={handleAdd} />)}
         </div>
         {data.pages > 1 && (
-          <div className="flex justify-center gap-2 mt-10">
+          <div className="flex justify-center gap-2 mt-8">
             {Array.from({ length: data.pages }, (_, i) => i + 1).map((p) => (
               <button
                 key={p}
                 onClick={() => setFilter('page', String(p))}
-                className={`px-4 py-2 rounded-lg ${p === page ? 'bg-gold text-ink' : 'glass'}`}
+                className={`px-3 py-1.5 rounded-sm text-sm ${p === page ? 'bg-flipkart-blue text-white' : 'fk-card'}`}
               >
                 {p}
               </button>

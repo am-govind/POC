@@ -23,6 +23,7 @@ export default function Inventory() {
   const status = params.get('status') || '';
   const category = params.get('category') || '';
   const search = params.get('search') || '';
+  const [searchInput, setSearchInput] = useState(search);
 
   const load = () => {
     const q = new URLSearchParams();
@@ -31,6 +32,18 @@ export default function Inventory() {
     if (search) q.set('search', search);
     api(`/api/admin/inventory?${q}`).then(setRows).catch(() => {});
   };
+
+  useEffect(() => { setSearchInput(search); }, [search]);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const next = new URLSearchParams(params);
+      if (searchInput) next.set('search', searchInput);
+      else next.delete('search');
+      if (next.get('search') !== (params.get('search') || '')) setParams(next);
+    }, 350);
+    return () => clearTimeout(t);
+  }, [searchInput]);
 
   useEffect(() => { load(); }, [status, category, search]);
 
@@ -114,8 +127,8 @@ export default function Inventory() {
         <input
           className="admin-input max-w-xs ml-auto"
           placeholder="Search..."
-          value={search}
-          onChange={(e) => setFilter('search', e.target.value)}
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
         />
       </div>
 

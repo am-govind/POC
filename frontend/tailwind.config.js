@@ -4,20 +4,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: '#0a0a0f', light: '#1a1520', card: '#14121c' },
-        gold: { DEFAULT: '#d4a574', bright: '#c9a227', dim: '#8b7355' },
-        amber: { glow: '#ff9f00' },
+        flipkart: {
+          blue: '#2874f0',
+          'blue-dark': '#1c5fc7',
+          yellow: '#ff9f00',
+          bg: '#f1f3f6',
+          text: '#212121',
+          muted: '#878787',
+          green: '#388e3c',
+        },
       },
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
         sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
-      backgroundImage: {
-        'grain': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
-      },
       boxShadow: {
-        glow: '0 0 30px rgba(212, 165, 116, 0.25)',
-        'glow-lg': '0 0 60px rgba(212, 165, 116, 0.35)',
+        card: '0 1px 2px 0 rgba(0,0,0,.08)',
+        header: '0 1px 4px 0 rgba(0,0,0,.1)',
       },
     },
   },

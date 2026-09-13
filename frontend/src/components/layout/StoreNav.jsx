@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, ShoppingCart, User, Wine, LogOut } from 'lucide-react';
+import { Search, ShoppingCart, User, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 
-export default function StoreNav({ onSearch }) {
+export default function StoreNav() {
   const { user, logout, isAuthenticated } = useAuth();
   const { count } = useCart();
   const navigate = useNavigate();
@@ -12,48 +12,52 @@ export default function StoreNav({ onSearch }) {
 
   const submit = (e) => {
     e.preventDefault();
-    if (onSearch) onSearch(query);
-    else navigate(`/shop?q=${encodeURIComponent(query)}`);
+    navigate(`/shop?q=${encodeURIComponent(query)}`);
   };
 
   return (
-    <header className="sticky top-0 z-50 glass border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
-        <Link to="/" className="flex items-center gap-2 shrink-0">
-          <Wine className="text-gold" size={24} />
-          <span className="font-display text-xl font-bold text-gold">BottleShop</span>
+    <header className="fk-header">
+      <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center gap-4">
+        <Link to="/" className="shrink-0 flex flex-col leading-tight">
+          <span className="text-flipkart-blue font-bold text-xl italic">BottleShop</span>
+          <span className="text-[10px] text-flipkart-muted hidden sm:block">Premium Spirits</span>
         </Link>
 
-        <form onSubmit={submit} className="flex-1 max-w-xl hidden sm:flex">
-          <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" size={18} />
-            <input
-              className="input-field pl-10 py-2"
-              placeholder="Search spirits, wine, beer..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </div>
+        <form onSubmit={submit} className="flex-1 flex max-w-2xl">
+          <input
+            className="fk-input rounded-r-none flex-1 py-2"
+            placeholder="Search for whisky, wine, beer and more"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button type="submit" className="bg-flipkart-blue text-white px-4 rounded-r-sm hover:bg-flipkart-blue-dark">
+            <Search size={18} />
+          </button>
         </form>
 
-        <nav className="flex items-center gap-3 ml-auto">
+        <nav className="flex items-center gap-4 shrink-0">
           {isAuthenticated ? (
             <>
-              <Link to="/orders" className="btn-ghost hidden md:inline-flex text-sm">Orders</Link>
-              <span className="text-white/60 text-sm hidden md:inline">{user.full_name || user.email}</span>
-              <button onClick={logout} className="btn-ghost p-2" title="Sign out">
+              <Link to="/orders" className="text-flipkart-blue font-medium text-sm hidden md:block hover:underline">
+                Orders
+              </Link>
+              <span className="text-xs text-flipkart-muted hidden lg:block max-w-[100px] truncate">
+                {user.full_name || user.email}
+              </span>
+              <button onClick={logout} className="text-flipkart-muted hover:text-flipkart-blue p-1" title="Sign out">
                 <LogOut size={18} />
               </button>
             </>
           ) : (
-            <Link to="/login" className="btn-ghost flex items-center gap-2 text-sm">
+            <Link to="/login" className="text-flipkart-blue font-semibold text-sm flex items-center gap-1">
               <User size={18} /> Login
             </Link>
           )}
-          <Link to="/cart" className="btn-ghost relative p-2">
+          <Link to="/cart" className="flex items-center gap-1 text-flipkart-blue font-semibold text-sm">
             <ShoppingCart size={20} />
+            <span className="hidden sm:inline">Cart</span>
             {count > 0 && (
-              <span className="absolute -top-1 -right-1 bg-amber-glow text-ink text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+              <span className="bg-flipkart-yellow text-white text-xs font-bold min-w-[18px] h-[18px] rounded-full flex items-center justify-center px-1">
                 {count}
               </span>
             )}

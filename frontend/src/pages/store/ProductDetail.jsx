@@ -1,13 +1,10 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Minus, Plus } from 'lucide-react';
-
-const BottleViewer = lazy(() => import('../../components/three/BottleViewer'));
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Minus, Plus, ChevronLeft } from 'lucide-react';
 import StoreNav from '../../components/layout/StoreNav';
 import StoreFooter from '../../components/layout/StoreFooter';
 import ProductCard from '../../components/store/ProductCard';
-import { api, CATEGORY_MODEL, formatPrice, stockBadge } from '../../lib/api';
+import { api, discountPercent, formatPrice, stockBadge } from '../../lib/api';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 
@@ -15,6 +12,7 @@ export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [related, setRelated] = useState([]);
+  const [activeImg, setActiveImg] = useState(0);
   const [qty, setQty] = useState(1);
   const [busy, setBusy] = useState(false);
   const { isAuthenticated } = useAuth();
@@ -27,105 +25,149 @@ export default function ProductDetail() {
 
   useEffect(() => {
     if (!product?.category_slug) return;
-    api(`/api/products?category=${product.category_slug}&limit=4`).then((r) => {
+    api(`/api/products?category=${product.category_slug}&limit=6`).then((r) => {
       setRelated(r.items.filter((p) => p.id !== id));
     }).catch(() => {});
   }, [product, id]);
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-ink flex items-center justify-center">
-        <div className="animate-pulse text-gold">Loading...</div>
+      <div className="min-h-screen bg-flipkart-bg flex items-center justify-center text-flipkart-muted">
+        Loading…
       </div>
     );
   }
 
+  const images = product.images?.length ? product.images : (product.image_url ? [product.image_url] : []);
   const badge = stockBadge(product.stock_quantity, product.reorder_level);
   const outOfStock = product.stock_quantity <= 0;
-  const modelType = CATEGORY_MODEL[product.category_slug] || 'spirits-amber';
+  const off = discountPercent(product.price, product.mrp);
 
-  const buy = async (redirect) => {
-    if (!isAuthenticated) { navigate('/login'); return; }
+  const requireAuth = (redirect) => {
+    if (!isAuthenticated) {
+      navigate(`/login?redirect=${encodeURIComponent(redirect)}`);
+      return false;
+    }
+    return true;
+  };
+
+  const buy = async (goCheckout) => {
+    if (!requireAuth(goCheckout ? '/checkout' : '/cart')) return;
     setBusy(true);
     try {
       await addItem(product.id, qty);
-      if (redirect) navigate('/checkout');
-      else navigate('/cart');
+      navigate(goCheckout ? '/checkout' : '/cart');
     } finally {
       setBusy(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-ink bg-grain">
+    <div className="min-h-screen bg-flipkart-bg">
       <StoreNav />
-      <main className="max-w-7xl mx-auto px-4 py-10">
-        <div className="grid lg:grid-cols-2 gap-10">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="glass-card aspect-square lg:aspect-auto lg:min-h-[480px]"
-          >
-            {product.image_url ? (
-              <div className="relative w-full h-full min-h-[320px]">
-                <img src={product.image_url} alt={product.name} className="absolute inset-0 w-full h-full object-contain p-8 lg:hidden" />
-                <div className="hidden lg:block h-full">
-                  <Suspense fallback={<div className="h-full flex items-center justify-center text-gold/50">Loading 3D…</div>}>
-                    <BottleViewer modelType={modelType} imageUrl={product.image_url} />
-                  </Suspense>
-                </div>
-              </div>
-            ) : (
-              <Suspense fallback={null}>
-                <BottleViewer modelType={modelType} />
-              </Suspense>
-            )}
-          </motion.div>
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        <Link to="/shop" className="inline-flex items-center gap-1 text-flipkart-blue text-sm mb-4 hover:underline">
+          <ChevronLeft size={16} /> Back to shop
+        </Link>
 
-          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-            <p className="text-gold uppercase tracking-wider text-sm">{product.category}</p>
-            <h1 className="font-display text-4xl md:text-5xl mt-2">{product.name}</h1>
-            <p className="text-white/50 mt-2">{product.brand}</p>
-            <p className="text-gold text-3xl font-bold mt-6">{formatPrice(product.price)}</p>
-            <div className="flex gap-3 mt-4 flex-wrap">
-              <span className="glass px-3 py-1 rounded-full text-sm">{product.alcohol_percentage}% ABV</span>
-              <span className="glass px-3 py-1 rounded-full text-sm">{product.volume_ml} ml</span>
-              {badge && (
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  badge.tone === 'red' ? 'bg-red-500/20 text-red-300' : 'bg-amber-glow/20 text-amber-glow'
-                }`}>{badge.label}</span>
+        <div className="grid lg:grid-cols-2 gap-8">
+          <div className="fk-card p-4">
+            <div className="aspect-square bg-gray-50 flex items-center justify-center p-6">
+              {images[activeImg] && (
+                <img src={images[activeImg]} alt={product.name} className="max-h-full object-contain" />
               )}
             </div>
-            <p className="text-white/70 mt-6 leading-relaxed">{product.description}</p>
+            {images.length > 1 && (
+              <div className="flex gap-2 mt-3 overflow-x-auto">
+                {images.map((url, i) => (
+                  <button
+                    key={url}
+                    type="button"
+                    onClick={() => setActiveImg(i)}
+                    className={`w-16 h-16 border rounded-sm p-1 shrink-0 ${
+                      i === activeImg ? 'border-flipkart-blue' : 'border-gray-200'
+                    }`}
+                  >
+                    <img src={url} alt="" className="w-full h-full object-contain" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <p className="text-flipkart-muted text-sm">{product.brand}</p>
+            <h1 className="text-2xl font-medium text-flipkart-text mt-1">{product.name}</h1>
+            <div className="flex items-center gap-3 mt-4 flex-wrap">
+              <span className="text-2xl font-semibold">{formatPrice(product.price)}</span>
+              {off > 0 && (
+                <>
+                  <span className="text-flipkart-muted line-through">{formatPrice(product.mrp)}</span>
+                  <span className="text-flipkart-green font-semibold text-sm">{off}% off</span>
+                </>
+              )}
+            </div>
+            {badge && (
+              <p className={`text-sm mt-2 ${badge.tone === 'red' ? 'text-red-600' : 'text-orange-600'}`}>
+                {badge.label}
+              </p>
+            )}
+            <p className="text-flipkart-muted text-sm mt-4 leading-relaxed">{product.description}</p>
+
+            {product.highlights?.length > 0 && (
+              <ul className="mt-4 space-y-1 text-sm text-flipkart-text list-disc pl-5">
+                {product.highlights.map((h) => <li key={h}>{h}</li>)}
+              </ul>
+            )}
 
             {!outOfStock && (
-              <div className="flex items-center gap-4 mt-8">
-                <div className="flex items-center glass rounded-lg">
-                  <button type="button" className="p-3" onClick={() => setQty(Math.max(1, qty - 1))}><Minus size={16} /></button>
-                  <span className="w-10 text-center">{qty}</span>
-                  <button type="button" className="p-3" onClick={() => setQty(Math.min(product.stock_quantity, qty + 1))}><Plus size={16} /></button>
+              <div className="flex items-center gap-3 mt-6">
+                <span className="text-sm text-flipkart-muted">Qty:</span>
+                <div className="flex items-center border border-gray-300 rounded-sm">
+                  <button type="button" className="p-2" onClick={() => setQty(Math.max(1, qty - 1))}><Minus size={14} /></button>
+                  <span className="w-10 text-center text-sm">{qty}</span>
+                  <button type="button" className="p-2" onClick={() => setQty(Math.min(product.stock_quantity, qty + 1))}><Plus size={14} /></button>
                 </div>
               </div>
             )}
 
-            <div className="flex gap-4 mt-6 flex-wrap">
-              <button className="btn-primary" disabled={outOfStock || busy} onClick={() => buy(false)}>
-                Add to Cart
+            <div className="flex gap-3 mt-6 flex-wrap">
+              <button className="fk-btn-cart px-8 py-3" disabled={outOfStock || busy} onClick={() => buy(false)}>
+                ADD TO CART
               </button>
-              <button className="btn-ghost border-gold/50 text-gold" disabled={outOfStock || busy} onClick={() => buy(true)}>
-                Buy Now
+              <button className="fk-btn-primary px-8 py-3" disabled={outOfStock || busy} onClick={() => buy(true)}>
+                BUY NOW
               </button>
             </div>
-          </motion.div>
+
+            <div className="fk-card mt-8 p-4 text-sm">
+              <h2 className="font-semibold text-flipkart-text mb-3">Product Details</h2>
+              <table className="w-full">
+                <tbody className="text-flipkart-muted">
+                  {[
+                    ['Brand', product.brand],
+                    ['Category', product.category],
+                    ['ABV', `${product.alcohol_percentage}%`],
+                    ['Volume', `${product.volume_ml} ml`],
+                    ['Country', product.country_of_origin],
+                    ['SKU', product.sku],
+                  ].filter(([, v]) => v).map(([k, v]) => (
+                    <tr key={k} className="border-b border-gray-100">
+                      <td className="py-2 pr-4 text-flipkart-text">{k}</td>
+                      <td className="py-2">{v}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
         {related.length > 0 && (
-          <section className="mt-20">
-            <h2 className="font-display text-2xl mb-6">You may also like</h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {related.map((p, i) => (
-                <ProductCard key={p.id} product={p} index={i} />
-              ))}
+          <section className="mt-12">
+            <h2 className="text-lg font-semibold mb-4">Similar products</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {related.map((p) => <ProductCard key={p.id} product={p} />)}
             </div>
           </section>
         )}

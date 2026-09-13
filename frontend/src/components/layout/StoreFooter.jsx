@@ -2,29 +2,29 @@ import { Link } from 'react-router-dom';
 
 export default function StoreFooter() {
   return (
-    <footer className="border-t border-white/10 mt-20 py-12 bg-ink-light/50">
-      <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8 text-sm text-white/60">
+    <footer className="bg-white border-t border-gray-200 mt-12 py-10">
+      <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8 text-sm text-flipkart-muted">
         <div>
-          <h3 className="font-display text-gold text-lg mb-3">BottleShop</h3>
-          <p>Premium spirits delivered with care. Must be 21+ to purchase.</p>
+          <h3 className="text-flipkart-text font-semibold mb-3">BottleShop</h3>
+          <p>India&apos;s trusted online liquor store. Must be {21}+ to purchase. Drink responsibly.</p>
         </div>
         <div>
-          <h4 className="text-white mb-3 font-semibold">Shop</h4>
-          <ul className="space-y-2">
-            <li><Link to="/shop" className="hover:text-gold">All Products</Link></li>
-            <li><Link to="/shop?category=whisky" className="hover:text-gold">Whisky</Link></li>
-            <li><Link to="/shop?category=wine" className="hover:text-gold">Wine</Link></li>
+          <h4 className="text-flipkart-text font-medium mb-2">Shop</h4>
+          <ul className="space-y-1">
+            <li><Link to="/shop" className="hover:text-flipkart-blue">All Products</Link></li>
+            <li><Link to="/shop?category=whisky" className="hover:text-flipkart-blue">Whisky</Link></li>
+            <li><Link to="/shop?category=wine" className="hover:text-flipkart-blue">Wine</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="text-white mb-3 font-semibold">Support</h4>
-          <ul className="space-y-2">
-            <li><Link to="/login" className="hover:text-gold">Account</Link></li>
-            <li><Link to="/admin" className="hover:text-gold">Admin</Link></li>
+          <h4 className="text-flipkart-text font-medium mb-2">Help</h4>
+          <ul className="space-y-1">
+            <li><Link to="/login" className="hover:text-flipkart-blue">My Account</Link></li>
+            <li><Link to="/admin" className="hover:text-flipkart-blue">Admin</Link></li>
           </ul>
         </div>
       </div>
-      <p className="text-center text-white/30 text-xs mt-8">© {new Date().getFullYear()} BottleShop. Drink responsibly.</p>
+      <p className="text-center text-xs text-gray-400 mt-8">© {new Date().getFullYear()} BottleShop</p>
     </footer>
   );
 }

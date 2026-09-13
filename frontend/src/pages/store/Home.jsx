@@ -1,14 +1,12 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-
-const HeroScene = lazy(() => import('../../components/three/HeroScene'));
 import StoreNav from '../../components/layout/StoreNav';
 import StoreFooter from '../../components/layout/StoreFooter';
 import ProductCard from '../../components/store/ProductCard';
 import { api } from '../../lib/api';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CATEGORIES = [
   { slug: 'whisky', label: 'Whisky' },
@@ -26,53 +24,45 @@ export default function Home() {
   const [category, setCategory] = useState('');
   const { isAuthenticated } = useAuth();
   const { addItem } = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const params = new URLSearchParams({ limit: '8' });
+    const params = new URLSearchParams({ limit: '12' });
     if (category) params.set('category', category);
     api(`/api/products?${params}`).then((r) => setProducts(r.items)).catch(() => {});
   }, [category]);
 
   const handleAdd = async (product) => {
     if (!isAuthenticated) {
-      window.location.href = '/login';
+      navigate(`/login?redirect=${encodeURIComponent(location.pathname + location.search)}`);
       return;
     }
     await addItem(product.id);
   };
 
   return (
-    <div className="min-h-screen bg-ink bg-grain">
+    <div className="min-h-screen bg-flipkart-bg">
       <StoreNav />
-      <section className="relative h-[85vh] min-h-[500px] flex items-center overflow-hidden">
-        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-ink via-ink-light to-[#2a1f10]" />}>
-          <HeroScene />
-        </Suspense>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-xl"
-          >
-            <p className="text-gold tracking-[0.3em] text-sm uppercase mb-4">Premium Spirits</p>
-            <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
-              Discover Your <span className="text-gold italic">Next Bottle</span>
-            </h1>
-            <p className="text-white/60 text-lg mb-8">
-              Curated whisky, wine, beer and spirits — delivered to your door.
-            </p>
-            <Link to="/shop" className="btn-primary inline-block">Explore Collection</Link>
-          </motion.div>
+      <section className="bg-flipkart-blue text-white">
+        <div className="max-w-7xl mx-auto px-4 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold">Premium Spirits, Delivered</h1>
+            <p className="text-blue-100 mt-2 text-lg">Whisky · Wine · Beer · Spirits — best prices online</p>
+            <Link to="/shop" className="inline-block mt-6 bg-white text-flipkart-blue font-semibold px-6 py-2.5 rounded-sm hover:bg-blue-50">
+              Shop now
+            </Link>
+          </div>
+          <div className="hidden md:block text-6xl opacity-30">🍾</div>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+      <section className="max-w-7xl mx-auto px-4 py-4">
+        <div className="flex gap-2 overflow-x-auto pb-1">
           <button
             onClick={() => setCategory('')}
-            className={`shrink-0 px-4 py-2 rounded-full text-sm transition-all ${
-              !category ? 'bg-gold text-ink font-semibold' : 'glass text-white/70 hover:text-gold'
+            className={`shrink-0 px-4 py-2 rounded-sm text-sm font-medium ${
+              !category ? 'bg-flipkart-blue text-white' : 'fk-card text-flipkart-text'
             }`}
           >
             All
@@ -81,8 +71,8 @@ export default function Home() {
             <button
               key={c.slug}
               onClick={() => setCategory(c.slug)}
-              className={`shrink-0 px-4 py-2 rounded-full text-sm transition-all ${
-                category === c.slug ? 'bg-gold text-ink font-semibold' : 'glass text-white/70 hover:text-gold'
+              className={`shrink-0 px-4 py-2 rounded-sm text-sm font-medium ${
+                category === c.slug ? 'bg-flipkart-blue text-white' : 'fk-card text-flipkart-text'
               }`}
             >
               {c.label}
@@ -91,15 +81,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 pb-20">
-        <h2 className="font-display text-3xl mb-8">Featured Selection</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {products.map((p, i) => (
-            <ProductCard key={p.id} product={p} index={i} onAdd={handleAdd} />
+      <section className="max-w-7xl mx-auto px-4 pb-12">
+        <h2 className="text-lg font-semibold text-flipkart-text mb-4">Deals of the Day</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {products.map((p) => (
+            <ProductCard key={p.id} product={p} onAdd={handleAdd} />
           ))}
         </div>
-        <div className="text-center mt-10">
-          <Link to="/shop" className="btn-ghost">View all products</Link>
+        <div className="text-center mt-8">
+          <Link to="/shop" className="fk-btn-primary inline-block">View all products</Link>
         </div>
       </section>
       <StoreFooter />
