@@ -1,0 +1,1106 @@
+[
+  {
+    "sku": "BS-WHI-01",
+    "category": "whisky",
+    "name": "Oak & Ember Single Malt",
+    "brand": "Oak & Ember",
+    "description": "Premium single malt from Oak & Ember.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 2500,
+    "mrp": 2950,
+    "country": "Scotland",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky0",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky0"
+    ],
+    "highlights": [
+      "From Scotland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 8,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WHI-02",
+    "category": "whisky",
+    "name": "Highland Reserve Blended Scotch",
+    "brand": "Highland Reserve",
+    "description": "Premium blended scotch from Highland Reserve.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 3800,
+    "mrp": 4484,
+    "country": "Scotland",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky1",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky1"
+    ],
+    "highlights": [
+      "From Scotland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 37,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WHI-03",
+    "category": "whisky",
+    "name": "Glen Firth Bourbon",
+    "brand": "Glen Firth",
+    "description": "Premium bourbon from Glen Firth.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 5100,
+    "mrp": 6018,
+    "country": "Scotland",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky2",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky2"
+    ],
+    "highlights": [
+      "From Scotland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 39,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WHI-04",
+    "category": "whisky",
+    "name": "Smoky Peat Irish Whiskey",
+    "brand": "Smoky Peat",
+    "description": "Premium irish whiskey from Smoky Peat.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 6400,
+    "mrp": 7552,
+    "country": "Scotland",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky3",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky3"
+    ],
+    "highlights": [
+      "From Scotland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 41,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WHI-05",
+    "category": "whisky",
+    "name": "Riverstone Rye Whiskey",
+    "brand": "Riverstone",
+    "description": "Premium rye whiskey from Riverstone.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 7700,
+    "mrp": 9086,
+    "country": "Scotland",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky4",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky4"
+    ],
+    "highlights": [
+      "From Scotland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 43,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WHI-06",
+    "category": "whisky",
+    "name": "Copper Still Japanese Style",
+    "brand": "Copper Still",
+    "description": "Premium japanese style from Copper Still.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 9000,
+    "mrp": 10620,
+    "country": "Scotland",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky5",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=whisky5"
+    ],
+    "highlights": [
+      "From Scotland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 45,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WIN-01",
+    "category": "wine",
+    "name": "Cedar Valley Shiraz",
+    "brand": "Cedar Valley",
+    "description": "Premium shiraz from Cedar Valley.",
+    "abv": 13.0,
+    "volume_ml": 750,
+    "price": 600,
+    "mrp": 708,
+    "country": "France",
+    "image_url": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine0",
+    "images": [
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine0"
+    ],
+    "highlights": [
+      "From France",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 8,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WIN-02",
+    "category": "wine",
+    "name": "Vine & Valley Merlot",
+    "brand": "Vine & Valley",
+    "description": "Premium merlot from Vine & Valley.",
+    "abv": 13.0,
+    "volume_ml": 750,
+    "price": 1180,
+    "mrp": 1392,
+    "country": "France",
+    "image_url": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine1",
+    "images": [
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine1"
+    ],
+    "highlights": [
+      "From France",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 37,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WIN-03",
+    "category": "wine",
+    "name": "Sunset Cellars Ros\u00e9",
+    "brand": "Sunset Cellars",
+    "description": "Premium ros\u00e9 from Sunset Cellars.",
+    "abv": 13.0,
+    "volume_ml": 750,
+    "price": 1760,
+    "mrp": 2076,
+    "country": "France",
+    "image_url": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine2",
+    "images": [
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine2"
+    ],
+    "highlights": [
+      "From France",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 39,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WIN-04",
+    "category": "wine",
+    "name": "Monte Rosso Chardonnay",
+    "brand": "Monte Rosso",
+    "description": "Premium chardonnay from Monte Rosso.",
+    "abv": 13.0,
+    "volume_ml": 750,
+    "price": 2340,
+    "mrp": 2761,
+    "country": "France",
+    "image_url": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine3",
+    "images": [
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine3"
+    ],
+    "highlights": [
+      "From France",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 41,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WIN-05",
+    "category": "wine",
+    "name": "Coastal Vine Sauvignon Blanc",
+    "brand": "Coastal Vine",
+    "description": "Premium sauvignon blanc from Coastal Vine.",
+    "abv": 13.0,
+    "volume_ml": 750,
+    "price": 2920,
+    "mrp": 3445,
+    "country": "France",
+    "image_url": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine4",
+    "images": [
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine4"
+    ],
+    "highlights": [
+      "From France",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 43,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-WIN-06",
+    "category": "wine",
+    "name": "Heritage Oak Cabernet",
+    "brand": "Heritage Oak",
+    "description": "Premium cabernet from Heritage Oak.",
+    "abv": 13.0,
+    "volume_ml": 750,
+    "price": 3500,
+    "mrp": 4130,
+    "country": "France",
+    "image_url": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine5",
+    "images": [
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&sig=wine5"
+    ],
+    "highlights": [
+      "From France",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 45,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-BEE-01",
+    "category": "beer",
+    "name": "Harbor Light Lager",
+    "brand": "Harbor Light",
+    "description": "Premium lager from Harbor Light.",
+    "abv": 5.0,
+    "volume_ml": 500,
+    "price": 150,
+    "mrp": 177,
+    "country": "India",
+    "image_url": "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer0",
+    "images": [
+      "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer0"
+    ],
+    "highlights": [
+      "From India",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 8,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-BEE-02",
+    "category": "beer",
+    "name": "Peak Brew IPA",
+    "brand": "Peak Brew",
+    "description": "Premium ipa from Peak Brew.",
+    "abv": 5.0,
+    "volume_ml": 500,
+    "price": 210,
+    "mrp": 247,
+    "country": "India",
+    "image_url": "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer1",
+    "images": [
+      "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer1"
+    ],
+    "highlights": [
+      "From India",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 37,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-BEE-03",
+    "category": "beer",
+    "name": "Urban Lager Wheat Beer",
+    "brand": "Urban Lager",
+    "description": "Premium wheat beer from Urban Lager.",
+    "abv": 5.0,
+    "volume_ml": 500,
+    "price": 270,
+    "mrp": 318,
+    "country": "India",
+    "image_url": "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer2",
+    "images": [
+      "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer2"
+    ],
+    "highlights": [
+      "From India",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 39,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-BEE-04",
+    "category": "beer",
+    "name": "Craft Coast Stout",
+    "brand": "Craft Coast",
+    "description": "Premium stout from Craft Coast.",
+    "abv": 5.0,
+    "volume_ml": 500,
+    "price": 330,
+    "mrp": 389,
+    "country": "India",
+    "image_url": "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer3",
+    "images": [
+      "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer3"
+    ],
+    "highlights": [
+      "From India",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 41,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-BEE-05",
+    "category": "beer",
+    "name": "Himalaya Brew Pilsner",
+    "brand": "Himalaya Brew",
+    "description": "Premium pilsner from Himalaya Brew.",
+    "abv": 5.0,
+    "volume_ml": 500,
+    "price": 390,
+    "mrp": 460,
+    "country": "India",
+    "image_url": "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer4",
+    "images": [
+      "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer4"
+    ],
+    "highlights": [
+      "From India",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 43,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-BEE-06",
+    "category": "beer",
+    "name": "Monsoon Ale Amber Ale",
+    "brand": "Monsoon Ale",
+    "description": "Premium amber ale from Monsoon Ale.",
+    "abv": 5.0,
+    "volume_ml": 500,
+    "price": 450,
+    "mrp": 531,
+    "country": "India",
+    "image_url": "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer5",
+    "images": [
+      "https://images.unsplash.com/photo-1608270582240-4e6608835c37?w=500&sig=beer5"
+    ],
+    "highlights": [
+      "From India",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 45,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-GIN-01",
+    "category": "gin",
+    "name": "Juniper House London Dry",
+    "brand": "Juniper House",
+    "description": "Premium london dry from Juniper House.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1200,
+    "mrp": 1416,
+    "country": "England",
+    "image_url": "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin0",
+    "images": [
+      "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin0"
+    ],
+    "highlights": [
+      "From England",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 8,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-GIN-02",
+    "category": "gin",
+    "name": "Botanical Co Botanical",
+    "brand": "Botanical Co",
+    "description": "Premium botanical from Botanical Co.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1520,
+    "mrp": 1793,
+    "country": "England",
+    "image_url": "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin1",
+    "images": [
+      "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin1"
+    ],
+    "highlights": [
+      "From England",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 37,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-GIN-03",
+    "category": "gin",
+    "name": "London Dry Co Navy Strength",
+    "brand": "London Dry Co",
+    "description": "Premium navy strength from London Dry Co.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1840,
+    "mrp": 2171,
+    "country": "England",
+    "image_url": "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin2",
+    "images": [
+      "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin2"
+    ],
+    "highlights": [
+      "From England",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 39,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-GIN-04",
+    "category": "gin",
+    "name": "Citrus Grove Pink Gin",
+    "brand": "Citrus Grove",
+    "description": "Premium pink gin from Citrus Grove.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 2160,
+    "mrp": 2548,
+    "country": "England",
+    "image_url": "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin3",
+    "images": [
+      "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin3"
+    ],
+    "highlights": [
+      "From England",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 41,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-GIN-05",
+    "category": "gin",
+    "name": "Herb & Still Old Tom",
+    "brand": "Herb & Still",
+    "description": "Premium old tom from Herb & Still.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 2480,
+    "mrp": 2926,
+    "country": "England",
+    "image_url": "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin4",
+    "images": [
+      "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin4"
+    ],
+    "highlights": [
+      "From England",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 43,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-GIN-06",
+    "category": "gin",
+    "name": "Blue Juniper Citrus Gin",
+    "brand": "Blue Juniper",
+    "description": "Premium citrus gin from Blue Juniper.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 2800,
+    "mrp": 3304,
+    "country": "England",
+    "image_url": "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin5",
+    "images": [
+      "https://images.unsplash.com/photo-1571613314887-6f8d3cbf7ef7?w=500&sig=gin5"
+    ],
+    "highlights": [
+      "From England",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 45,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-VOD-01",
+    "category": "vodka",
+    "name": "Crystal Premium",
+    "brand": "Crystal",
+    "description": "Premium premium from Crystal.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 900,
+    "mrp": 1062,
+    "country": "Poland",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka0",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka0"
+    ],
+    "highlights": [
+      "From Poland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 8,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-VOD-02",
+    "category": "vodka",
+    "name": "Arctic Craft",
+    "brand": "Arctic",
+    "description": "Premium craft from Arctic.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1160,
+    "mrp": 1368,
+    "country": "Poland",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka1",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka1"
+    ],
+    "highlights": [
+      "From Poland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 37,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-VOD-03",
+    "category": "vodka",
+    "name": "Pure Frost Wheat",
+    "brand": "Pure Frost",
+    "description": "Premium wheat from Pure Frost.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1420,
+    "mrp": 1675,
+    "country": "Poland",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka2",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka2"
+    ],
+    "highlights": [
+      "From Poland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 39,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-VOD-04",
+    "category": "vodka",
+    "name": "Silver Stream Pot Still",
+    "brand": "Silver Stream",
+    "description": "Premium pot still from Silver Stream.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1680,
+    "mrp": 1982,
+    "country": "Poland",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka3",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka3"
+    ],
+    "highlights": [
+      "From Poland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 41,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-VOD-05",
+    "category": "vodka",
+    "name": "Nordic Clear Filtered",
+    "brand": "Nordic Clear",
+    "description": "Premium filtered from Nordic Clear.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1940,
+    "mrp": 2289,
+    "country": "Poland",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka4",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka4"
+    ],
+    "highlights": [
+      "From Poland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 43,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-VOD-06",
+    "category": "vodka",
+    "name": "Glacier Reserve",
+    "brand": "Glacier",
+    "description": "Premium reserve from Glacier.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 2200,
+    "mrp": 2596,
+    "country": "Poland",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka5",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=vodka5"
+    ],
+    "highlights": [
+      "From Poland",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 45,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-RUM-01",
+    "category": "rum",
+    "name": "Island Spirits Gold Rum",
+    "brand": "Island Spirits",
+    "description": "Premium gold rum from Island Spirits.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 800,
+    "mrp": 944,
+    "country": "Jamaica",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum0",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum0"
+    ],
+    "highlights": [
+      "From Jamaica",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 8,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-RUM-02",
+    "category": "rum",
+    "name": "Dark Cove Dark Rum",
+    "brand": "Dark Cove",
+    "description": "Premium dark rum from Dark Cove.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1040,
+    "mrp": 1227,
+    "country": "Jamaica",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum1",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum1"
+    ],
+    "highlights": [
+      "From Jamaica",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 37,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-RUM-03",
+    "category": "rum",
+    "name": "Caribbean Gold Spiced Rum",
+    "brand": "Caribbean Gold",
+    "description": "Premium spiced rum from Caribbean Gold.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1280,
+    "mrp": 1510,
+    "country": "Jamaica",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum2",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum2"
+    ],
+    "highlights": [
+      "From Jamaica",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 39,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-RUM-04",
+    "category": "rum",
+    "name": "Tropical Barrel White Rum",
+    "brand": "Tropical Barrel",
+    "description": "Premium white rum from Tropical Barrel.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1520,
+    "mrp": 1793,
+    "country": "Jamaica",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum3",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum3"
+    ],
+    "highlights": [
+      "From Jamaica",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 41,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-RUM-05",
+    "category": "rum",
+    "name": "Spice Harbor Aged Rum",
+    "brand": "Spice Harbor",
+    "description": "Premium aged rum from Spice Harbor.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1760,
+    "mrp": 2076,
+    "country": "Jamaica",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum4",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum4"
+    ],
+    "highlights": [
+      "From Jamaica",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 43,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-RUM-06",
+    "category": "rum",
+    "name": "Cane Island Coconut Rum",
+    "brand": "Cane Island",
+    "description": "Premium coconut rum from Cane Island.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 2000,
+    "mrp": 2360,
+    "country": "Jamaica",
+    "image_url": "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum5",
+    "images": [
+      "https://images.unsplash.com/photo-1569529465841-dfecdabfb3b5?w=500&sig=rum5"
+    ],
+    "highlights": [
+      "From Jamaica",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 45,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-TEQ-01",
+    "category": "tequila",
+    "name": "Sierra Azul Blanco",
+    "brand": "Sierra Azul",
+    "description": "Premium blanco from Sierra Azul.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 1800,
+    "mrp": 2124,
+    "country": "Mexico",
+    "image_url": "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila0",
+    "images": [
+      "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila0"
+    ],
+    "highlights": [
+      "From Mexico",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 8,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-TEQ-02",
+    "category": "tequila",
+    "name": "Agave Sun Reposado",
+    "brand": "Agave Sun",
+    "description": "Premium reposado from Agave Sun.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 2340,
+    "mrp": 2761,
+    "country": "Mexico",
+    "image_url": "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila1",
+    "images": [
+      "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila1"
+    ],
+    "highlights": [
+      "From Mexico",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 37,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-TEQ-03",
+    "category": "tequila",
+    "name": "Desert Gold A\u00f1ejo",
+    "brand": "Desert Gold",
+    "description": "Premium a\u00f1ejo from Desert Gold.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 2880,
+    "mrp": 3398,
+    "country": "Mexico",
+    "image_url": "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila2",
+    "images": [
+      "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila2"
+    ],
+    "highlights": [
+      "From Mexico",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 39,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-TEQ-04",
+    "category": "tequila",
+    "name": "Plata Real Silver",
+    "brand": "Plata Real",
+    "description": "Premium silver from Plata Real.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 3420,
+    "mrp": 4035,
+    "country": "Mexico",
+    "image_url": "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila3",
+    "images": [
+      "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila3"
+    ],
+    "highlights": [
+      "From Mexico",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 41,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-TEQ-05",
+    "category": "tequila",
+    "name": "Cactus Trail Gold",
+    "brand": "Cactus Trail",
+    "description": "Premium gold from Cactus Trail.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 3960,
+    "mrp": 4672,
+    "country": "Mexico",
+    "image_url": "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila4",
+    "images": [
+      "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila4"
+    ],
+    "highlights": [
+      "From Mexico",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 43,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-TEQ-06",
+    "category": "tequila",
+    "name": "Azul Mesa Cristalino",
+    "brand": "Azul Mesa",
+    "description": "Premium cristalino from Azul Mesa.",
+    "abv": 40.0,
+    "volume_ml": 750,
+    "price": 4500,
+    "mrp": 5310,
+    "country": "Mexico",
+    "image_url": "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila5",
+    "images": [
+      "https://images.unsplash.com/photo-1618885472179-5e474019f2a6?w=500&sig=tequila5"
+    ],
+    "highlights": [
+      "From Mexico",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 45,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-LIQ-01",
+    "category": "liqueurs",
+    "name": "Midnight Coffee Liqueur",
+    "brand": "Midnight",
+    "description": "Premium coffee liqueur from Midnight.",
+    "abv": 20.0,
+    "volume_ml": 750,
+    "price": 500,
+    "mrp": 590,
+    "country": "Italy",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs0",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs0"
+    ],
+    "highlights": [
+      "From Italy",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 8,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-LIQ-02",
+    "category": "liqueurs",
+    "name": "Golden Hive Herbal Liqueur",
+    "brand": "Golden Hive",
+    "description": "Premium herbal liqueur from Golden Hive.",
+    "abv": 20.0,
+    "volume_ml": 750,
+    "price": 700,
+    "mrp": 826,
+    "country": "Italy",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs1",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs1"
+    ],
+    "highlights": [
+      "From Italy",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 37,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-LIQ-03",
+    "category": "liqueurs",
+    "name": "Velvet Cream Cream Liqueur",
+    "brand": "Velvet Cream",
+    "description": "Premium cream liqueur from Velvet Cream.",
+    "abv": 20.0,
+    "volume_ml": 750,
+    "price": 900,
+    "mrp": 1062,
+    "country": "Italy",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs2",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs2"
+    ],
+    "highlights": [
+      "From Italy",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 39,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-LIQ-04",
+    "category": "liqueurs",
+    "name": "Herbal Mist Orange Liqueur",
+    "brand": "Herbal Mist",
+    "description": "Premium orange liqueur from Herbal Mist.",
+    "abv": 20.0,
+    "volume_ml": 750,
+    "price": 1100,
+    "mrp": 1298,
+    "country": "Italy",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs3",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs3"
+    ],
+    "highlights": [
+      "From Italy",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 41,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-LIQ-05",
+    "category": "liqueurs",
+    "name": "Cocoa Spirit Nut Liqueur",
+    "brand": "Cocoa Spirit",
+    "description": "Premium nut liqueur from Cocoa Spirit.",
+    "abv": 20.0,
+    "volume_ml": 750,
+    "price": 1300,
+    "mrp": 1534,
+    "country": "Italy",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs4",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs4"
+    ],
+    "highlights": [
+      "From Italy",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 43,
+    "reorder_level": 12
+  },
+  {
+    "sku": "BS-LIQ-06",
+    "category": "liqueurs",
+    "name": "Honey Orchard Honey Liqueur",
+    "brand": "Honey Orchard",
+    "description": "Premium honey liqueur from Honey Orchard.",
+    "abv": 20.0,
+    "volume_ml": 750,
+    "price": 1500,
+    "mrp": 1770,
+    "country": "Italy",
+    "image_url": "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs5",
+    "images": [
+      "https://images.unsplash.com/photo-1527281800644-f7a1659c3be5?w=500&sig=liqueurs5"
+    ],
+    "highlights": [
+      "From Italy",
+      "Secure packaging",
+      "Quality assured"
+    ],
+    "stock": 45,
+    "reorder_level": 12
+  }
+]
