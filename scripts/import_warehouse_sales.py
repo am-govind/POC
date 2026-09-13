@@ -6,12 +6,19 @@ Usage:
 """
 import csv
 import os
-import re
 import sys
 import psycopg
 
 CSV_COLUMNS = ["year", "month", "supplier", "item_code", "item_description",
                "item_type", "retail_sales", "retail_transfers", "warehouse_sales"]
+
+def normalized_row(row):
+    """Accept the source file's space-separated, uppercase headers."""
+    normalized = {key.strip().lower().replace(" ", "_"): value for key, value in row.items()}
+    missing = [column for column in CSV_COLUMNS if column not in normalized]
+    if missing:
+        raise ValueError(f"CSV is missing columns: {', '.join(missing)}")
+    return normalized
 
 if len(sys.argv) != 2 or not os.getenv("DATABASE_URL"):
     raise SystemExit("Set DATABASE_URL and pass the CSV path")
@@ -25,7 +32,8 @@ with psycopg.connect(dsn) as conn:
         with cur.copy("copy public.warehouse_sales_import (year,month,supplier,item_code,item_description,item_type,retail_sales,retail_transfers,warehouse_sales) from stdin with (format csv)") as copy:
             reader = csv.DictReader(fh)
             for row in reader:
-                copy.write_row([row[c.upper()] for c in CSV_COLUMNS])
+                row = normalized_row(row)
+                copy.write_row([row[c] for c in CSV_COLUMNS])
 
         # The source has no price/current inventory. Keep those fields at their
         # schema defaults and use the source item code as the stable product key.
