@@ -1,0 +1,13 @@
+project_id = "bottleshop-local"
+
+[db]
+port = 54322
+
+[studio]
+port = 54323
+
+[api]
+port = 54321
+
+[inbucket]
+port = 54324
