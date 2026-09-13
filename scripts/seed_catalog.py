@@ -25,15 +25,14 @@ def main():
     with psycopg.connect(dsn) as conn:
         with conn.cursor() as cur:
             for item in items:
+                slug = item["category"].strip().lower()
                 cur.execute(
-                    "select id from categories where slug = %s",
-                    (item["category"],),
+                    """insert into categories (name, slug) values (%s, %s)
+                    on conflict (slug) do update set name=excluded.name
+                    returning id""",
+                    (slug.replace('-', ' ').title(), slug),
                 )
-                row = cur.fetchone()
-                if not row:
-                    print(f"Skip unknown category: {item['category']}")
-                    continue
-                cat_id = row[0]
+                cat_id = cur.fetchone()[0]
                 images = item.get("images") or ([item["image_url"]] if item.get("image_url") else [])
                 primary = images[0] if images else item.get("image_url")
 
