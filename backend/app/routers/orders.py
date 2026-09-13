@@ -77,7 +77,12 @@ def create_order(
                 "insert into order_items(order_id,product_id,quantity,price) "
                 "values(:order,:product,:qty,:price)"
             ),
-            {"order": order, **dict(item)},
+                {
+                    "order": order,
+                    "product": item["product_id"],
+                    "qty": item["quantity"],
+                    "price": item["price"],
+                },
         )
     session.execute(
         text(
