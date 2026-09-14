@@ -14,7 +14,7 @@
   }
 
   .fk-card {
-    @apply bg-white rounded-sm shadow-card border border-gray-100;
+    @apply bg-white rounded-xl shadow-card border border-gray-100;
   }
 
   .fk-btn-primary {
@@ -35,5 +35,106 @@
   .admin-input {
     @apply w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-gray-900
       focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500;
+  }
+
+  .store-hero {
+    @apply overflow-hidden bg-flipkart-blue text-white;
+    background-image: radial-gradient(circle at 82% 20%, rgba(255, 159, 0, .28), transparent 24%), linear-gradient(135deg, #2874f0 0%, #1c5fc7 100%);
+  }
+
+  .store-hero-inner {
+    @apply max-w-7xl mx-auto px-4 py-14 md:py-20 flex items-center justify-between gap-8;
+  }
+
+  .store-hero-copy {
+    @apply max-w-2xl;
+  }
+
+  .store-eyebrow, .store-section-kicker {
+    @apply uppercase tracking-[0.18em] text-xs font-bold;
+  }
+
+  .store-eyebrow {
+    @apply text-blue-100;
+  }
+
+  .store-hero h1 {
+    @apply text-4xl md:text-6xl font-bold leading-[1.05] mt-4;
+  }
+
+  .store-hero h1 em {
+    @apply text-flipkart-yellow not-italic;
+  }
+
+  .store-hero p {
+    @apply text-blue-100 text-base md:text-lg leading-relaxed mt-5 max-w-xl;
+  }
+
+  .store-hero-cta {
+    @apply inline-flex items-center bg-flipkart-yellow text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:brightness-95 transition;
+  }
+
+  .store-hero-note {
+    @apply text-sm text-blue-100;
+  }
+
+  .store-hero-art {
+    @apply relative hidden md:block w-64 h-64 shrink-0;
+  }
+
+  .hero-bottle {
+    @apply absolute bottom-4 left-1/2 rounded-[2rem] border-4 border-white/30 shadow-2xl;
+    transform: translateX(-50%) rotate(8deg);
+  }
+
+  .hero-bottle-front {
+    @apply w-28 h-48 bg-flipkart-yellow flex items-center justify-center text-flipkart-blue text-2xl font-bold;
+  }
+
+  .hero-bottle-front::before, .hero-bottle-back::before {
+    content: '';
+    @apply absolute -top-12 left-1/2 w-12 h-14 rounded-t-xl bg-white/70 border-4 border-white/30;
+    transform: translateX(-50%);
+  }
+
+  .hero-bottle-back {
+    @apply w-20 h-36 bg-white/25 -translate-x-12 opacity-70;
+    transform: translateX(-72%) rotate(-12deg);
+  }
+
+  .hero-spark {
+    @apply absolute top-3 right-5 text-5xl text-flipkart-yellow;
+  }
+
+  .category-chip {
+    @apply shrink-0 px-4 py-2 rounded-full text-sm font-semibold bg-white text-flipkart-text border border-slate-200 shadow-sm hover:border-flipkart-blue hover:text-flipkart-blue transition;
+  }
+
+  .category-chip-active {
+    @apply bg-flipkart-blue text-white border-flipkart-blue hover:text-white;
+  }
+
+  .product-card {
+    @apply overflow-hidden bg-white rounded-2xl border border-slate-200 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all;
+  }
+
+  .product-card-media {
+    @apply bg-gradient-to-br from-slate-50 to-blue-50;
+  }
+
+  .bottle-fallback {
+    @apply relative w-24 h-48 flex flex-col items-center justify-end;
+  }
+
+  .bottle-fallback-cap {
+    @apply block w-8 h-7 rounded-t-md bg-flipkart-blue;
+  }
+
+  .bottle-fallback-neck {
+    @apply block w-12 h-9 bg-blue-200 border-x-4 border-flipkart-blue;
+  }
+
+  .bottle-fallback-body {
+    @apply flex items-center justify-center w-24 h-32 rounded-2xl bg-flipkart-blue border-4 border-white shadow-lg text-white text-2xl font-bold;
   }
 }

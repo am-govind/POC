@@ -15,6 +15,7 @@ export default function ProductDetail() {
   const [activeImg, setActiveImg] = useState(0);
   const [qty, setQty] = useState(1);
   const [busy, setBusy] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const { isAuthenticated } = useAuth();
   const { addItem } = useCart();
   const navigate = useNavigate();
@@ -73,8 +74,19 @@ export default function ProductDetail() {
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="fk-card p-4">
             <div className="aspect-square bg-gray-50 flex items-center justify-center p-6">
-              {images[activeImg] && (
-                <img src={images[activeImg]} alt={product.name} className="max-h-full object-contain" />
+              {images[activeImg] && !imageFailed ? (
+                <img
+                  src={images[activeImg]}
+                  alt={product.name}
+                  onError={() => setImageFailed(true)}
+                  className="max-h-full object-contain"
+                />
+              ) : (
+                <div className="bottle-fallback scale-125" aria-label={`${product.name} product image placeholder`}>
+                  <span className="bottle-fallback-cap" />
+                  <span className="bottle-fallback-neck" />
+                  <span className="bottle-fallback-body">{product.category?.[0] || 'B'}</span>
+                </div>
               )}
             </div>
             {images.length > 1 && (

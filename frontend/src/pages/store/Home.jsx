@@ -44,25 +44,38 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-flipkart-bg">
       <StoreNav />
-      <section className="bg-flipkart-blue text-white">
-        <div className="max-w-7xl mx-auto px-4 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold">Premium Spirits, Delivered</h1>
-            <p className="text-blue-100 mt-2 text-lg">Whisky · Wine · Beer · Spirits — best prices online</p>
-            <Link to="/shop" className="inline-block mt-6 bg-white text-flipkart-blue font-semibold px-6 py-2.5 rounded-sm hover:bg-blue-50">
-              Shop now
-            </Link>
+      <section className="store-hero">
+        <div className="store-hero-inner">
+          <div className="store-hero-copy">
+            <span className="store-eyebrow">Curated spirits · Delivered with care</span>
+            <h1>Good bottles for<br /><em>great evenings.</em></h1>
+            <p>Explore thoughtful picks across whisky, wine, beer and more — with trusted delivery at your door.</p>
+            <div className="flex flex-wrap items-center gap-3 mt-7">
+              <Link to="/shop" className="store-hero-cta">Explore the collection</Link>
+              <span className="store-hero-note">Age-verified delivery</span>
+            </div>
           </div>
-          <div className="hidden md:block text-6xl opacity-30">🍾</div>
+          <div className="store-hero-art" aria-hidden="true">
+            <div className="hero-bottle hero-bottle-back" />
+            <div className="hero-bottle hero-bottle-front"><span>BS</span></div>
+            <div className="hero-spark">✦</div>
+          </div>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 py-4">
+      <section className="max-w-7xl mx-auto px-4 py-7">
+        <div className="flex items-end justify-between gap-4 mb-4">
+          <div>
+            <p className="store-section-kicker">Find your pour</p>
+            <h2 className="text-xl font-semibold text-flipkart-text">Shop by category</h2>
+          </div>
+          <Link to="/shop" className="hidden sm:block text-sm font-semibold text-flipkart-blue hover:underline">View all</Link>
+        </div>
         <div className="flex gap-2 overflow-x-auto pb-1">
           <button
             onClick={() => setCategory('')}
             className={`shrink-0 px-4 py-2 rounded-sm text-sm font-medium ${
-              !category ? 'bg-flipkart-blue text-white' : 'fk-card text-flipkart-text'
+              !category ? 'category-chip category-chip-active' : 'category-chip'
             }`}
           >
             All
@@ -72,7 +85,7 @@ export default function Home() {
               key={c.slug}
               onClick={() => setCategory(c.slug)}
               className={`shrink-0 px-4 py-2 rounded-sm text-sm font-medium ${
-                category === c.slug ? 'bg-flipkart-blue text-white' : 'fk-card text-flipkart-text'
+                category === c.slug ? 'category-chip category-chip-active' : 'category-chip'
               }`}
             >
               {c.label}
@@ -82,8 +95,14 @@ export default function Home() {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 pb-12">
-        <h2 className="text-lg font-semibold text-flipkart-text mb-4">Deals of the Day</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        <div className="flex items-end justify-between gap-4 mb-4">
+          <div>
+            <p className="store-section-kicker">Handpicked for you</p>
+            <h2 className="text-2xl font-semibold text-flipkart-text">Popular bottles</h2>
+          </div>
+          <span className="hidden sm:block text-sm text-flipkart-muted">Fresh picks, fair prices</span>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products.map((p) => (
             <ProductCard key={p.id} product={p} onAdd={handleAdd} />
           ))}
